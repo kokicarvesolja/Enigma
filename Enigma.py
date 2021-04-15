@@ -74,7 +74,7 @@ while prvo_mesto == drugo_mesto or prvo_mesto == tretje_mesto or drugo_mesto == 
     vnos_uporabnika3 = input()
     tretje_mesto = vrstni_red_rotorjev(vnos_uporabnika3, r1, r2, r3, r4, r5)
 
-# za obračanje obročev
+# za obračanje rotorjev
 
 def zasuk_rotorja_stevilo(izbran_rotor, prvi_rotor, drugi_rotor, tretji_rotor, cetrti_rotor, peti_rotor):
     if izbran_rotor == prvi_rotor:
@@ -93,8 +93,6 @@ zasuk_rotorja_1 = zasuk_rotorja_stevilo(prvo_mesto, r1, r2, r3, r4, r5)
 
 zasuk_rotorja_2 = zasuk_rotorja_stevilo(drugo_mesto, r1, r2, r3, r4, r5)
 
-print(zasuk_rotorja_1, zasuk_rotorja_2)
-
 # položaj obročev 
 
 def zasuk_obroca(rotor):
@@ -111,9 +109,9 @@ def zasuk_obroca(rotor):
                 rotor[i] = rotor[i] - 26
         return rotor
 
-#prvo_mesto = zasuk_obroca(prvo_mesto)
-#drugo_mesto = zasuk_obroca(drugo_mesto)
-#tretje_mesto = zasuk_obroca(tretje_mesto)
+prvo_mesto = zasuk_obroca(prvo_mesto)
+drugo_mesto = zasuk_obroca(drugo_mesto)
+tretje_mesto = zasuk_obroca(tretje_mesto)
 
 # menjava črk 
 
@@ -124,7 +122,7 @@ def fun_menjava_crk(slovar):
     vrednost = input("S katero črko pa? ")
     slovar[kljuc] = vrednost
 
-#for i in range(10):
+for i in range(10):
     fun_menjava_crk(menjava_crk)
     print(menjava_crk)
 
@@ -252,20 +250,14 @@ def zasuk_za_drugi(zasuk):
         zasuk = 25
     return zasuk
 
-
-stevilo_vnosov = 0
-
 zamik_r1 = x
 zamik_r2 = y
 zamik_r3 = z
 
-print("1: ", tretje_mesto)
 
 if zamik_r2 == zasuk_za_drugi(zasuk_rotorja_2) :
     zasuk_rotorja(tretje_mesto)
     zamik_r3 += 1
-
-print("2: ", tretje_mesto)
 
 while vnos_uporabnika != 0:
     zasuk_rotorja(prvo_mesto)
@@ -273,13 +265,9 @@ while vnos_uporabnika != 0:
     if zamik_r2 == zasuk_za_drugi(zasuk_rotorja_2):
         zasuk_rotorja(drugo_mesto)
         zamik_r2 = nastavitev_zamika(zamik_r2)
-    print("Zamik_r2 = ", zamik_r2)
-    #print("zasuk 1: ", zasuk_rotorja_1, "zasuk 2: ", zasuk_rotorja_2 )
     zamik_r2, drugo_mesto = drugi_rotor_se_zasuka(drugo_mesto, zasuk_rotorja_1, zamik_r1, zamik_r2)
     zamik_r3, tretje_mesto = tretji_rotor_se_zasuka(tretje_mesto, zasuk_rotorja_1, zasuk_rotorja_2, zamik_r1, zamik_r2, zamik_r3)
-    print("Zamik_r1 = ", zamik_r1,"Zamik_r2 =", zamik_r2, "Zamik_r3 = ",zamik_r3)
     vnos_uporabnika = input("Vnesi malo tiskano črko za šifriranje: ")
-    stevilo_vnosov += 1
     prva_sprememba_crke = fun_sprememba_crke(vnos_uporabnika, menjava_crk)
     r_indeks = signal_skozi_rotorje(prva_sprememba_crke, zamik_r1, zamik_r2, zamik_r3, prvo_mesto, drugo_mesto, tretje_mesto) # indeks za reflektor
     n_indeks = skozi_reflektor(reflektor, r_indeks) # vrednost, ki je shranjena pod indeksom reflektorja
